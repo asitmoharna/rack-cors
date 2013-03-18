@@ -217,7 +217,9 @@ module Rack
           end
 
           def compile(path)
-            if path.respond_to? :to_str
+            if path.is_a?Array
+              Regexp.union( path.collect {|p| compile(p) } )
+            elsif path.respond_to? :to_str
               special_chars = %w{. + ( )}
               pattern =
                 path.to_str.gsub(/((:\w+)|[\*#{special_chars.join}])/) do |match|
