@@ -3,6 +3,7 @@ require 'rack/test'
 require 'shoulda'
 require 'mocha'
 require 'rack/cors'
+require 'test/unit'
 
 Rack::Test::Session.class_eval do
   def options(uri, params = {}, env = {}, &block)
